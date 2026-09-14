@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Menu Widi Ema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F9F6F0;
+            --primary-green: #2C4C3B;
+            --accent-yellow: #EAB543;
+            --text-dark: #333333;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(#e0dcd3 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-green);
+            padding: 3px;
+            background-color: var(--white);
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(44, 76, 59, 0.15);
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 2px;
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .menu-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .accordion {
+            background-color: var(--primary-green);
+            color: var(--white);
+            cursor: pointer;
+            padding: 16px 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .accordion:hover {
+            background-color: #1e3629;
+            transform: translateY(-2px);
+        }
+
+        .accordion.active {
+            border-radius: 12px 12px 0 0;
+            background-color: #1e3629;
+            transform: translateY(0);
+        }
+
+        .accordion::after {
+            content: '▼';
+            font-size: 12px;
+            color: var(--accent-yellow);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active::after {
+            transform: rotate(-180deg);
+        }
+
+        .panel {
+            padding: 0 20px;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .menu-item {
+            padding: 20px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .menu-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-green);
+            line-height: 1.3;
+            padding-right: 10px;
+        }
+
+        .menu-price {
+            color: #b58117;
+            background-color: #fff4d9;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .menu-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .btn-wa {
+            margin-top: 25px;
+            background-color: var(--accent-yellow);
+            color: var(--primary-green);
+            text-decoration: none;
+            padding: 16px;
+            width: 100%;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(234, 181, 67, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-wa:hover {
+            background-color: #d4a23a;
+            transform: scale(1.02);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 11px;
+            color: #888;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <img src="https://ui-avatars.com/api/?name=Widi+Ema&background=2C4C3B&color=EAB543&size=200&font-size=0.33&bold=true" alt="Widi Ema" class="profile-img">
+            <h1 class="brand-name">WIDI EMA</h1>
+            <p class="tagline">Selesat Masakan Ibu, Seenak di Rumah Sendiri</p>
+        </div>
+
+        <div class="menu-wrapper">
+            
+            <!-- KATEGORI 1 -->
+            <button class="accordion">🌟 Menu Spesial & Premium</button>
+            <div class="panel">
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET PUCUK SPECIAL — Rp30.000.jpg" alt="Paket Pucuk Special" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Pucuk Special</div>
+                        <div class="menu-price">Rp 30.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Goreng Spesial, Tempe Bacem, Tumis Pucuk Singkong, Kentang Mustofa, Sambal Widi Ema, Kerupuk, Alat Makan.</div>
+                </div>
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET SPECIAL SAPI.jpg" alt="Paket Special Sapi" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Special Sapi</div>
+                        <div class="menu-price">Tanya Admin</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Daging Sapi Balado, Capcay Sayur, Kentang Mustofa, Sambal Widi Ema, Kerupuk, Alat Makan.</div>
+                </div>
+            </div>
+
+            <!-- KATEGORI 2 -->
+            <button class="accordion">🇮🇩 Menu Cita Rasa Nusantara</button>
+            <div class="panel">
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET GUDEG — Rp25.000.jpg" alt="Paket Gudeg" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Gudeg</div>
+                        <div class="menu-price">Rp 25.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Rempah (Goreng/Bakar), Gudeg Jogja Tradisional, Tempe Bacem, Sambal Nusantara, Alat Makan.</div>
+                </div>
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET NUSANTARA — Rp25.000.jpg" alt="Paket Nusantara" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Nusantara</div>
+                        <div class="menu-price">Rp 25.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Sambal Balado, Tumis Buncis, Kentang Mustofa, Sambal & Lalapan, Kerupuk, Alat Makan.</div>
+                </div>
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET SAYUR ASEM — Rp25.000.jpg" alt="Paket Sayur Asem" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Sayur Asem</div>
+                        <div class="menu-price">Rp 25.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Goreng Rempah, Sayur Asem Tradisional, Tempe Bacem, Sambal Nusantara, Alat Makan.</div>
+                </div>
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET URAB — Rp25.000.jpg" alt="Paket Urab" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Urab</div>
+                        <div class="menu-price">Rp 25.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Goreng Rempah, Urap Sayur Autentik, Tempe Bacem, Sambal Terasi Autentik, Kerupuk Gendar, Alat Makan.</div>
+                </div>
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET PUCUK SINGKONG — Rp25.000.jpg" alt="Paket Pucuk Singkong" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Pucuk Singkong</div>
+                        <div class="menu-price">Rp 25.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih (Porsi Besar), Ayam Goreng Krispi (1 Potong), Tempe Bacem, Tumis Pucuk Singkong, Sambal Segar, Lalapan Segar.</div>
+                </div>
+            </div>
+
+            <!-- KATEGORI 3 -->
+            <button class="accordion">🍱 Paket Hemat & Praktis</button>
+            <div class="panel">
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET 1 — Rp27.000.jpg" alt="Paket 1" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket 1</div>
+                        <div class="menu-price">Rp 27.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Goreng, Tempe Bacem, Tahu Goreng, Sambal & Lalapan, Krupuk, Alat Makan.</div>
+                </div>
+                <div class="menu-item">
+                    <img src="widi ema menu/PAKET HEMAT — Rp22.000.jpg" alt="Paket Hemat" class="menu-photo" onerror="this.style.display='none'">
+                    <div class="menu-header">
+                        <div class="menu-title">Paket Hemat</div>
+                        <div class="menu-price">Rp 22.000</div>
+                    </div>
+                    <div class="menu-desc">Nasi Putih, Ayam Goreng, Tempe Bacem, Lalapan Kemangi.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NOMOR WA SUDAH DIUPDATE DISINI -->
+        <a href="https://wa.me/6287811933429?text=Halo%20Admin%20Widi%20Ema%2C%20saya%20tertarik%20untuk%20pesan%20catering%20nasi%20kotaknya..." target="_blank" class="btn-wa">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+            </svg>
+            Pesan via WhatsApp
+        </a>
+
+        <div class="footer">
+            <p><strong>100% Halal & Higienis</strong></p>
+            <p>Terima Pesanan: 0878 1193 3429 | IG: @widi_ema</p>
+            <p style="margin-top: 5px; font-size: 9px; opacity: 0.7;">© 2024 Widi Ema Catering</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var accordions = document.getElementsByClassName("accordion");
+            
+            for (var i = 0; i < accordions.length; i++) {
+                accordions[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                        panel.style.padding = "0 20px";
+                    } else {
+                        var activeAcc = document.querySelector(".accordion.active");
+                        if(activeAcc && activeAcc !== this){
+                            activeAcc.classList.remove("active");
+                            activeAcc.nextElementSibling.style.maxHeight = null;
+                            activeAcc.nextElementSibling.style.padding = "0 20px";
+                        }
+                        
+                        panel.style.padding = "10px 20px 20px 20px";
+                        panel.style.maxHeight = panel.scrollHeight + 50 + "px";
+                    } 
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
